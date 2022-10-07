@@ -10,6 +10,6 @@ function getRandomFloatNumber(min, max, decimalPlaces = 2) {
   if (isNaN(parseFloat(min)) || isNaN(parseFloat(max)) || min < 0 || min >= max) {
     throw new Error('Задан неверный диапазон');
   }
-  return (Math.random() * (max - min + 1) + min).toFixed(decimalPlaces);
+  return (Math.random() * (max - min) + min).toFixed(decimalPlaces);
 }
-getRandomFloatNumber(0, 5);
+getRandomFloatNumber(1.197, 1.200, 4);
