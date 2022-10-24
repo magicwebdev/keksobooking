@@ -1,15 +1,14 @@
-function getRandomIntegerNumber(min, max) {
-  if (isNaN(Number(min)) || isNaN(Number(max)) || min < 0 || min >= max) {
-    throw new Error('Задан неверный диапазон');
-  }
+function getRandomIntegerNumber(a, b) {
+  const min = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
+  const max = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-getRandomIntegerNumber(1, 10);
 
-function getRandomFloatNumber(min, max, decimalPlaces = 2) {
-  if (isNaN(parseFloat(min)) || isNaN(parseFloat(max)) || min < 0 || min >= max) {
-    throw new Error('Задан неверный диапазон');
-  }
-  return (Math.random() * (max - min) + min).toFixed(decimalPlaces);
+function getRandomFloatNumber(a, b, decimalPlaces = 2) {
+  const min = Math.min(Math.abs(a), Math.abs(b));
+  const max = Math.max(Math.abs(a), Math.abs(b));
+  return +(Math.random() * (max - min) + min).toFixed(decimalPlaces);
 }
-getRandomFloatNumber(1.197, 1.200, 4);
+
+getRandomIntegerNumber(0, 3);
+getRandomFloatNumber(1.197, 1.200, 3);
