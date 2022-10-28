@@ -18,31 +18,34 @@ const PHOTOS = [
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg'
 ];
 
-const createAd = (index) => ({
-  author: {
-    avatar: `img/avatars/user${index.toString().length === 1 ? `0${index}` : index }.png`,
-  },
-  offer: {
-    title: 'Заголовок предложения',
-    // Как получить доступ к свойству объекта и другого объекта в общем объекте
-    // address:  `${this.location.lat} ${this.location.lat}`,
-    price: getRandomIntegerNumber(PRICE_MIN, PRICE_MAX),
-    type: getRandomArrayElement(TYPES),
-    rooms: getRandomIntegerNumber(1, 5),
-    guests: getRandomIntegerNumber(1, 10),
-    checkin: getRandomArrayElement(TIME),
-    checkout: getRandomArrayElement(TIME),
-    features: Array.from({length: getRandomIntegerNumber(1, FEATURES.length)},
-      (_, i) => FEATURES[i]),
-    description: 'Описание помещения',
-    photos: Array.from({length: getRandomIntegerNumber(1, 3)}, (_, i) => PHOTOS[i])
-  },
-  location: {
-    lat: getRandomFloatNumber(LOCATION.LAT_MIN, LOCATION.LAT_MAX),
-    lng: getRandomFloatNumber(LOCATION.LNG_MIN, LOCATION.LNG_MAX),
-  }
-});
+const createAd = (index) => {
+  const locationLat = getRandomFloatNumber(LOCATION.LAT_MIN, LOCATION.LAT_MAX);
+  const locationLng = getRandomFloatNumber(LOCATION.LNG_MIN, LOCATION.LNG_MAX);
+  return {
+    author: {
+      avatar: `img/avatars/user${index.toString().length === 1 ? `0${index}` : index}.png`,
+    },
+    offer: {
+      title: 'Заголовок предложения',
+      address:  `${locationLat}, ${locationLng}`,
+      price: getRandomIntegerNumber(PRICE_MIN, PRICE_MAX),
+      type: getRandomArrayElement(TYPES),
+      rooms: getRandomIntegerNumber(1, 5),
+      guests: getRandomIntegerNumber(1, 10),
+      checkin: getRandomArrayElement(TIME),
+      checkout: getRandomArrayElement(TIME),
+      features: Array.from({length: getRandomIntegerNumber(1, FEATURES.length)},
+        (_, i) => FEATURES[i]),
+      description: 'Описание помещения',
+      photos: Array.from({length: getRandomIntegerNumber(1, 3)}, (_, i) => PHOTOS[i])
+    },
+    location: {
+      lat: locationLat,
+      lng: locationLng,
+    }
+  };
+};
 
 const createAds = () => Array.from({length: AD_COUNT}, (_, index) => createAd(index + 1));
 
-export  {createAds};
+export {createAds};
